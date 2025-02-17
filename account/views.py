@@ -6,18 +6,32 @@ from django.contrib.auth.hashers import make_password
 from django.contrib.auth import login, logout, authenticate
 
 
+# def registerUser(request):
+#     if request.method == 'POST':
+#         form = RegisterForm(request.POST)
+#         if form.is_valid():
+#             user = form.save(commit=False)
+#             user.save()
+#             return redirect("home")
+#     else:
+#         form = RegisterForm ---> burada class vermelisen, moterizeleri qoymamisan.
+#     context = {
+#             "form" : form,
+#         }
+#     return render(request, "register.html", context)
+
 def registerUser(request):
     if request.method == 'POST':
         form = RegisterForm(request.POST)
         if form.is_valid():
-            user = form.save(commit=False)
-            user.save()
+            form.save()
             return redirect("home")
     else:
-        form = RegisterForm
+        form = RegisterForm()
+
     context = {
-            "form" : form,
-        }
+        "form": form
+    }
     return render(request, "register.html", context)
 
 def login(request):
