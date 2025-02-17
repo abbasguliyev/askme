@@ -1,0 +1,31 @@
+{% extends "layouts/base.html" %}
+
+{% load static %}
+
+{% block context %}
+<form action="" method="POST" class="mt-5">
+    {% csrf_token %}
+    <div class="mb-3">
+        <label for="first_name" class="form-label">Fisrt Name</label>
+        <input type="text"  class="form-control" name="first_name"  id="first_name" >
+    </div>
+    <div class="mb-3">
+        <label for="last_name" class="form-label">Last Name</label>
+        <input type="text" class="form-control" id="last_name" name="last_name" >
+    </div>
+    <div class="mb-3">
+        <label for="exampleInputEmail1" class="form-label">Email address</label>
+        <input type="email" class="form-control" id="exampleInputEmail1" name="email" aria-describedby="emailHelp" >
+    </div>
+    <div class="mb-3">
+        <label for="Password1" class="form-label">Password 1st</label>
+        <input type="password" name="password1" class="form-control" id="Password1" value="" >
+    </div>
+    <div class="mb-3">
+        <label for="Password2" class="form-label">Password 2nd</label>
+        <input type="password" class="form-control" name="password2" id="Password2" value="">
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+    </form> 
+{% endblock context %}
+ 
