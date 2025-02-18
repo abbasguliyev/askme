@@ -11,15 +11,18 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
             <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="#">Home</a>
+                <a class="nav-link active" aria-current="page" href="{% url "home" %}">Home</a>
             </li>
             </ul>
             <form class="d-flex justify-content-start w-100" style="width: 240px;" role="search">
             <input class="form-control" type="search" placeholder="Search" aria-label="Search" style="width: 240px;">
-            <a class="btn btn-primary me-2 ms-2" href="#" role="button">Login</a>
-            <a class="btn btn-primary" href="{% url "register" %}" role="button">Register</a>
-            </form>
-            
+            {% if request.user.is_authenticated %}
+                <a class="btn btn-danger ms-2" href="{% url "logout" %}" role="button">Logout</a>
+            {% else %}
+                <a class="btn btn-primary me-2 ms-2" href="{% url "login" %}" role="button">Login</a>
+                <a class="btn btn-primary me-2 " href="{% url "register" %}" role="button">Register</a>
+            {% endif %} 
+        </form>
         </div>
         </div>
     </nav>

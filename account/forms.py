@@ -1,10 +1,7 @@
 from django import forms
-from account.models import User
-from django.forms.widgets import PasswordInput
 from django.contrib.auth.hashers import make_password
 from django.core.exceptions import ValidationError
 from django.contrib.auth import get_user_model
-import account
 
 # class RegisterForm(forms.ModelForm):
 
@@ -38,8 +35,8 @@ eks halda ise cleaned_data-ni return edir. clean_data ise formdan gelen datalari
 """
 
 class RegisterForm(forms.ModelForm):
-    password1 = forms.CharField(widget=forms.PasswordInput)
-    password2 = forms.CharField(widget=forms.PasswordInput)
+    password1 = forms.CharField(widget=forms.PasswordInput, required=True)
+    password2 = forms.CharField(widget=forms.PasswordInput, required=True)
 
     class Meta:
         model = get_user_model()
@@ -61,3 +58,11 @@ class RegisterForm(forms.ModelForm):
         if commit:
             user.save()
         return user
+
+class LoginForm(forms.ModelForm):
+    email = forms.EmailField(required=True)
+    password = forms.CharField(widget=forms.PasswordInput, required=True)
+
+    class Meta:
+        model = get_user_model()
+        fields = ['email', 'password']

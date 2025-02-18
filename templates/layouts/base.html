@@ -11,6 +11,14 @@
 </head>
 <body>
     {% include "layouts/header.html" %}
+    {% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+        <li>{{ message }}</li>
+            {% endfor %}
+    </ul>
+    {% endif %}
+    
 
     <div class="container">
         {% block context %}
