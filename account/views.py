@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from .forms import RegisterForm, LoginForm
 from django.views.generic.edit import CreateView
 from django.urls import reverse_lazy
-from django.contrib.auth.hashers import make_password
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.contrib.auth import login, logout, authenticate
 from django.contrib import messages
 from django.contrib.auth import get_user_model
@@ -63,3 +63,21 @@ def loginUser(request):
 def logoutUser(request):
     logout(request)
     return redirect("home")
+
+
+def listUsers(request):
+    users = get_user_model().objects.all()
+    paginator = Paginator(users, 2)  
+
+    page_number = request.GET.get('page')
+    try:
+        page_obj = paginator.get_page(page_number)
+    except PageNotAnInteger:
+        page_obj = paginator.page(1)
+    except EmptyPage:
+        page_obj = paginator.page(paginator.num_pages)
+    context = {
+        "page_obj" : page_obj,
+    }
+
+    return render(request, "users.html", context)

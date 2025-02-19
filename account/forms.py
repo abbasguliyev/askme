@@ -61,7 +61,7 @@ class RegisterForm(forms.ModelForm):
 
 class LoginForm(forms.ModelForm):
     email = forms.EmailField(required=True)
-    password = forms.CharField(widget=forms.PasswordInput, required=True)
+    password = forms.CharField(widget=forms.PasswordInput, required=True, )
 
     class Meta:
         model = get_user_model()

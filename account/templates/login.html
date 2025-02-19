@@ -3,6 +3,30 @@
 {% load static %}
 
 {% block context %}
+
+<main class="form-signin w-100 m-auto ">
+    <form  method="POST" action="">
+    {% csrf_token %}
+      <h1 class="h2 mb-3 mt-4 fw-normal">Login</h1>
+  
+      <div class="form-floating">
+        <input type="email" name="email" class="form-control" id="floatingInput" placeholder="name@example.com">
+        <label for="floatingInput">Email address</label>
+      </div>
+      <div class="form-floating">
+        <input type="password" name="password" class="form-control" id="floatingPassword" placeholder="Password">
+        <label for="floatingPassword">Password</label>
+      </div>
+      <button class="btn btn-primary w-100 py-2" type="submit">Login</button>
+      <p class="mt-5 mb-3 text-body-secondary">© 2017–2024</p>
+    </form>
+</main>
+
+{% endblock context %}
+
+
+{% comment %} 
+
 <form  method="POST" action="" class="mt-5">
     {% csrf_token %}
     <div class="mb-3">
@@ -14,5 +38,4 @@
         <input type="password" name="password" class="form-control" id="password" placeholder="Enter password">
     </div>
     <button type="submit" class="btn btn-primary">Submit</button>
-</form>
-{% endblock context %}
+</form> {% endcomment %}
