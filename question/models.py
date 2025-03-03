@@ -1,11 +1,30 @@
 from django.db import models
+from account.models import get_user_model   
+    
 
+
+class Tag(models.Model):
+    name = models.TextField(max_length=30)
+
+    def __str__(self):
+        return self.name
 
 class Question(models.Model):
-    question = models.TextField()
+    user = models.ForeignKey(get_user_model(), on_delete=models.CASCADE, default=False)
     created_at = models.TimeField(auto_now_add=True)
+    title = models.TextField(max_length=90)
+    description = models.TextField(null=True, blank=True)
+    tag = models.ManyToManyField(Tag, related_name='tag')
+
+    def __str__(self):
+        return self.title
+    
 
 class Answer(models.Model):
-    answer = models.TextField()
+    question = models.ForeignKey(Question, on_delete=models.CASCADE)
     created_at = models.TimeField(auto_now_add=True)
-    questions = models.ForeignKey(Question, on_delete=models.CASCADE)
+    answer = models.TextField()
+    
+
+    def __str__(self):
+        return self.answer

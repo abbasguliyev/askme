@@ -1,0 +1,27 @@
+{% extends "layouts/base.html" %}
+
+{% load static %}
+
+{% block context %}  
+
+    <h3 class="mt-4 mb-4">Question</h3>
+
+    <div class="card" style="width: 75rem;">
+        <div class="card-body">
+        <h5 class="card-title">{{ question.title }}</h5>
+        {% for t in tag %}
+            <p class="card-text">{{ t }}</p>
+        {% endfor %}
+        </div>
+    </div>
+
+    <h3 class="mt-4 ">Answers</h3>
+    {% for answers in answer %}
+        <div class="card mb-4" style="width: 75rem;">
+            <div class="card-body">
+                {{answers}}
+            </div>
+        </div>
+    {% endfor %}
+{% endblock context %}
+

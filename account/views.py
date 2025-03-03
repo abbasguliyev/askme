@@ -58,7 +58,7 @@ def loginUser(request):
         "form" : form
     }
     
-    return render(request, "login.html", context)
+    return render(request, "login.html")
 
 def logoutUser(request):
     logout(request)
