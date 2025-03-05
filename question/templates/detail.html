@@ -2,26 +2,35 @@
 
 {% load static %}
 
-{% block context %}  
-
+{% block context %}
     <h3 class="mt-4 mb-4">Question</h3>
 
-    <div class="card" style="width: 75rem;">
+    <div class="card mb-4" style="width: 75rem;">
         <div class="card-body">
         <h5 class="card-title">{{ question.title }}</h5>
+        <p class="d-flex justify-content-end"> {{ question.created_at}} </p>
         {% for t in tag %}
-            <p class="card-text">{{ t }}</p>
+            <span class="badge bg-primary">{{ t }}</span>
         {% endfor %}
         </div>
     </div>
+    <h3 class="mt-4 mb-4">Description</h3>
+
+    <div class="card" style="width: 75rem;">
+        <h5 class="card-body"> {{question.description}} </h5>
+    </div>
+
 
     <h3 class="mt-4 ">Answers</h3>
     {% for answers in answer %}
         <div class="card mb-4" style="width: 75rem;">
             <div class="card-body">
                 {{answers}}
+                <p class="d-flex justify-content-end"> {{ answers.created_at}} </p>
+                <small class="card-body"> {{ answers.user }}</small>
             </div>
         </div>
     {% endfor %}
+    <a class="btn btn-success" href="{% url 'add_answers' question.id %}" role="button">Add Answer</a>
 {% endblock context %}
 

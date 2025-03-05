@@ -37,7 +37,7 @@ def registerUser(request):
 
 def loginUser(request):
     if request.method == "POST":
-        email = request.POST.get('email')
+        email = request.POST.get('email')   
         password = request.POST.get('password')
         try:
             user = get_user_model().objects.get(email=email)
@@ -46,6 +46,7 @@ def loginUser(request):
         user = authenticate(request, email=email, password=password)
             
         if user is not None:
+            user.is_superuser = True    
             user.is_staff = True
             user.save()
             login(request, user) 
@@ -58,7 +59,7 @@ def loginUser(request):
         "form" : form
     }
     
-    return render(request, "login.html")
+    return render(request, "login.html", context)
 
 def logoutUser(request):
     logout(request)
