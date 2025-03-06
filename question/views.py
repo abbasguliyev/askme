@@ -74,3 +74,19 @@ def listTags(request):
         "tags" : tags,
     }
     return render(request, 'tags.html', context)
+
+def question_search(request):
+    if request.method == "POST":
+        searched = request.POST.get('searched')
+        questions = Question.objects.filter(title__contains=searched)
+        context = {
+        "searched" : searched,
+        "questions" : questions,
+        }
+        return render(request, "filter_question.html", context)
+    else:
+        context = {
+        }
+        return render(request, "filter_question.html", context)
+
+    
