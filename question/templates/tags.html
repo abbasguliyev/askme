@@ -3,9 +3,16 @@
 {% load static %}
 
 {% block context %}
+<div class="row">
     {% for tag in tags %}
-        <p>{{tag}}</p>
+        <div class="col-md-4">
+            <div class="card mb-4">
+                <div class="card-body">
+                    <a href="{% url "detail_tag" tag.id %}" class="nav-link active"><h5 class="card-title">{{ tag }}</h5></a>
+                    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                </div>
+            </div>
+        </div>
     {% endfor %}
-
-
+</div>
 {% endblock context %}

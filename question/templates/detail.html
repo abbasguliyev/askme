@@ -3,8 +3,10 @@
 {% load static %}
 
 {% block context %}
-    <h3 class="mt-4 mb-4">Question</h3>
-
+    <a href="{% url "questions" %}" class="nav-link active"><h3 class="mt-4">Question</h3></a>
+    <div class="d-grid gap-2 d-md-flex justify-content-md-end mb-4">
+        <a class="btn btn-danger" href="{% url "delete" question.id %}" role="button">Delete question</a>
+    </div>
     <div class="card mb-4" style="width: 75rem;">
         <div class="card-body">
         <h5 class="card-title">{{ question.title }}</h5>
@@ -22,6 +24,7 @@
 
 
     <h3 class="mt-4 ">Answers</h3>
+    
     {% for answers in answer %}
         <div class="card mb-4" style="width: 75rem;">
             <div class="card-body">

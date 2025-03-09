@@ -42,7 +42,7 @@ def AddQuestions(request):
             question.user = request.user
             question.save()
             form.save_m2m()
-            return redirect('question')
+            return redirect('questions')
     else:
         form = QuestionForm()
 
@@ -88,5 +88,18 @@ def question_search(request):
         context = {
         }
         return render(request, "filter_question.html", context)
+    
+def delete_questions(request, pk):
+    question = Question.objects.get(pk=pk)
+    question.delete()
+    return redirect('questions')
 
+def detailTag(request,pk):
+    tag = get_object_or_404(Tag, pk=pk)
+    question = Question.objects.filter(tag=tag)    
+    context = {
+        "tag" : tag,
+        "question" : question,
+    }
+    return render(request,'filter_tag.html',context)
     
