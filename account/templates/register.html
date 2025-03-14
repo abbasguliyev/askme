@@ -3,6 +3,9 @@
 {% load static %}
 
 {% block context %}
+{% if request.user.is_authenticated %}
+ <h1> You already have an account and you're loged in!!! </h1>
+{% else %}
 <form action="" method="POST" class="mt-5">
     {% csrf_token %}
     <div class="mb-3">
@@ -27,5 +30,6 @@
     </div>
     <button type="submit" class="btn btn-primary">Submit</button>
 </form> 
+{% endif %}
 {% endblock context %}
  
