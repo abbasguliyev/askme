@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from .models import Question, Answer, Tag
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.shortcuts import get_object_or_404
-from .forms import QuestionForm, AnswerForm
+from .forms import QuestionForm, AnswerForm, TagForms
 
 def listQuestions(request,):
     question = Question.objects.all()
@@ -85,8 +85,6 @@ def question_search(request):
         }
         return render(request, "filter_question.html", context)
     else:
-        context = {
-        }
         return render(request, "filter_question.html", context)
     
 def delete_questions(request, pk):
@@ -103,3 +101,16 @@ def detailTag(request,pk):
     }
     return render(request,'filter_tag.html',context)
     
+def AddTag(request):
+    if request.method == "POST":
+        form = TagForms(request.POST)
+        if form.is_valid():
+            tag = form.save(commit=False)
+            tag.save()
+            return redirect('tags')
+    else:
+        form = TagForms()
+        context = {
+            "form" : form,
+        }
+    return render(request,'add_tag.html', context)

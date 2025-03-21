@@ -2,6 +2,9 @@ from django import forms
 from .models import Tag, Question, Answer
 
 class TagForms(forms.ModelForm):
+    name = forms.CharField(widget=forms.TextInput(
+        attrs={"class" : "form-control"}
+    ))
     class Meta:
         model = Tag
         fields = ["name",]

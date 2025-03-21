@@ -1,9 +1,16 @@
 {% extends "layouts/base.html" %}
 
-{% block context %}
-{% include "layouts/sidebar.html" %}
-
-
-
-
-{% endblock context %}
+{% block content %}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-3">
+            {% include "layouts/sidebar.html" %}
+        </div>
+        <div class="col-md-9">
+            <!-- Main content goes here -->
+            <h1>Welcome to Your Site</h1>
+            <p>This is the main content area.</p>
+        </div>
+    </div>
+</div>
+{% endblock content %}
